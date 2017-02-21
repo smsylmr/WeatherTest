@@ -40,4 +40,3 @@ public class SoldierWeatherOpenHelper extends SQLiteOpenHelper {
 
     }
 }
-

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.example.lmr.weathertest.R;
 import com.example.lmr.weathertest.db.SoldierWeatherDB;
 import com.example.lmr.weathertest.model.City;
@@ -42,7 +43,7 @@ public class ChooseAreaActivity extends Activity {
     private ListView listView;
     private List<String> lists;
     private ArrayAdapter<String> adapter;
-    private SoldierWeatherDB soldierWeatherDB;
+    private SoldierWeatherDB soldierWeatherDB;;
     /**
      * 省列表
      */
@@ -173,12 +174,10 @@ public class ChooseAreaActivity extends Activity {
 
     /**
      * 根据传入的类型从服务器上查询省市县数据
-     *
-     * @param type
      */
     private void queryFromServer(final String type) {
         showProgressDialog();
-        HttpUtil.sendHttpRequest("http://v.juhe.cn/weather/citys?key=af2af1996d54696346d66504710ddcf5", new HttpCallbackListener() {
+        HttpUtil.sendHttpRequest("http://v.juhe.cn/weather/citys?key=0c953abecf9c6e4f76b24a4b339b080f", new HttpCallbackListener() {
             @Override
             public void onFinish(InputStream in) {
                 boolean result = Utility.handleResponse(SoldierWeatherDB.getInstance(MyApplication.getContext()), in);
@@ -202,11 +201,14 @@ public class ChooseAreaActivity extends Activity {
 
             @Override
             public void onError(Exception e) {
+                e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         closeProgressDialog();
                         Toast.makeText(ChooseAreaActivity.this, "加载失败", Toast.LENGTH_SHORT).show();
+
+
                     }
                 });
             }
@@ -252,4 +254,5 @@ public class ChooseAreaActivity extends Activity {
         }
     }
 }
+
 

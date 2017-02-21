@@ -22,7 +22,6 @@ import java.util.List;
 /**
  * Created by LMR on 2017/2/15.
  */
-
 public class Utility {
 
     private static SoldierWeatherDB soldierWeatherDB;
@@ -39,6 +38,7 @@ public class Utility {
             while (reader.hasNext()) {
                 String nodeName = reader.nextName();
                 if (nodeName.equals("resultcode")) {
+                    reader.nextString();
                     flag = true;
                 } else if (nodeName.equals("result") && flag) {
                     saveAreaToDatabase(reader);
@@ -188,4 +188,3 @@ public class Utility {
         return false;
     }
 }
-
